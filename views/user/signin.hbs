@@ -1,0 +1,53 @@
+{{#if hasErrors}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            {{#each messages}}
+                toastr["error"]("{{this}}");
+            {{/each}}
+        });
+    </script>
+{{/if}}
+
+<div style="margin-bottom: 1em" class="row">
+
+    <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
+
+        <!--Form with header-->
+        <div style="margin-right: auto; margin-left: auto" class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
+            <div class="card-body">
+                <form action="/user/signin" method="POST">
+
+                    <!--Header-->
+                    <div class="form-header grey">
+                        <h3><i class="fa fa-user mt-2 mb-2"></i> Log in:</h3>
+                    </div>
+
+                    <!--Body-->
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="email" name="email" class="form-control">
+                        <label for="orangeForm-email">Your email</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        <input type="password" id="password" name="password" class="form-control">
+                        <label for="orangeForm-pass">Your password</label>
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+                    <div class="text-center">
+                        <button type="submit" class="btn grey btn-lg waves-effect waves-light">Sign In</button>
+                        <hr>
+                        <div class="inline-ul text-center d-flex justify-content-center">
+                            <a class="icons-sm tw-ic"><i class="fa fa-twitter grey-text"></i></a>
+                            <a class="icons-sm li-ic"><i class="fa fa-facebook grey-text"> </i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--/Form with header-->
+
+    </div>
+</div>
