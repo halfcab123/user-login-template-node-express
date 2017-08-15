@@ -8,6 +8,7 @@ var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var session = require('express-session');
+var sessionSecret = '';
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
@@ -19,7 +20,8 @@ var userRoutes = require('./routes/user');
 var app = express();
 
 /*connect to database*/
-mongoose.connect('mongodb://template_user:asdf1asdf2@ds143362.mlab.com:43362/template', {useMongoClient: true});
+var mongoUri = ';'
+mongoose.connect(mongoUri, {useMongoClient: true});
 require('./config/passport');
 
 // view engine setup
@@ -36,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
 app.use(session({
-    secret: 'A!s2d3f4g5',
+    secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
